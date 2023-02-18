@@ -1,10 +1,16 @@
+import { scheduleJob } from "node-schedule";
 import crawlChimhaha from "./crawler/crawlChimhaha";
 import crawlKbotown from "./crawler/crawlMLBPark";
 
 
-let main = () => {
-  // crawlKbotown();
-  crawlChimhaha();
+const main = () => {
+  scheduleJob('*/10 * * * *', () => {
+    crawlKbotown();
+  });
+
+  scheduleJob('*/15 * * * *', () => {
+    crawlChimhaha();
+  });
 };
 
 main();
